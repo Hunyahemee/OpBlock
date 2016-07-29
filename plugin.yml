@@ -1,0 +1,21 @@
+name: OpBlock
+main: opblock\Main
+version: 1.0.0
+api: 2.0.0
+author: JonsMC
+description: Block Op while they didn't input password
+commands:
+   opblock:
+      description: Main Command if OpBlock
+      usage: /opblock <add/remove> or <password>
+      permission: opblock.command
+permissions:
+     opblock.command:
+           description: "Allow player to use main OpBlock command"
+           default: op
+     opblock.command.add:
+           description: "Allow player to add another player to bypass list"
+           default: op
+     opblock.command.rm:
+           description: "Allow player to remove another player out of bypass list"
+           default: op
