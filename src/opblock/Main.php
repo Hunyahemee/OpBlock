@@ -21,17 +21,19 @@ class Main extends PluginBase implements Listerner{
          $this->getLogger->info(TextFormat::RED."[OpBlock] loading... ");
      }
      public function onEnable() {
+                $this->getLogger()->info("[OpBlock] Enabled");
 			$this->cfg = new Config($this->getDataFolder()."config.yml", Config::YAML);
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getLogger->info(TextFormat::GREEN."[OpBlock] OpBlock loaded!");
-		$this->list = $this->getConfig()->get('list');
+                $this->saveDefaultConfig();
+                $this->list = $this->getConfig()->get('list');
 	}
 	 
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
 	
 	$allias = array("ob", "opblock", "opb", "oblock");
 	
-	if($command->getName() == $allias and $sender->hasPermission("opblock.command"){
+	if(in_array($command->getName(), $allias) and $sender->hasPermission("opblock.command")){
 	
 	    switch(strtolower($args[0])) {
 	    // add and remove player from bypass list
