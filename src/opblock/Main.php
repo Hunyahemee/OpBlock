@@ -14,96 +14,95 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
 
 class Main extends PluginBase implements Listerner{
- 
- private $plogged;
+
+private $plogged;
 
      public function onLoad() {
          $this->getLogger->info(TextFormat::RED."[OpBlock] loading... ");
      }
      public function onEnable() {
                 $this->getLogger()->info("[OpBlock] Enabled");
-			$this->cfg = new Config($this->getDataFolder()."config.yml", Config::YAML);
-		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->getLogger->info(TextFormat::GREEN."[OpBlock] OpBlock loaded!");
+$this->cfg = new Config($this->getDataFolder()."config.yml", Config::YAML);
+$this->getServer()->getPluginManager()->registerEvents($this, $this);
+$this->getLogger->info(TextFormat::GREEN."[OpBlock] OpBlock loaded!");
                 $this->saveDefaultConfig();
                 $this->list = $this->getConfig()->get('list');
-	}
-	 
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
-	
-	$allias = array("ob", "opblock", "opb", "oblock");
-	
-	if(in_array($command->getName(), $allias) and $sender->hasPermission("opblock.command")){
-	
-	    switch(strtolower($args[0])) {
-	    // add and remove player from bypass list
-	         case "add":
-	                if ($sender->hasPermission("opblock.command.add") {
-	                   if (isset($args[1])) {
-	                        $this->addPlayerConfig($args[1]);
-	                        $sender->sendMessage("Added ".$args[1] ."to Bypass list");
-	                    } else {
-	                       $sender->sendMessage("Usage: /opblock add <player>");
-	                       }
-	                       $sender->sendMessage(TextFormat::RED."You Don't have permission to use this command");
-	                       }
-	                       break;
-	                       
-	           case "remove":
-	           case "rm":
-	                   if($sender->hasPermission("opblock.command.rm"){
-	                      if (isset($args[1]) {
-	                           $this->removePlayerConfig($args[1]);
-	                           $sender->sendMessage("Removed ".$args[1] ."out of Bypass list");
-	                           }else{
-	                           $sender->sendMessage("Usage: /opblock remove <name>");
-	                        }
-	                     }   else {
-	                        $sender->sendMessage(TextFormat::RED."You don't have permission to use this command");
-	                        }
-	                      break;
-	                    
-	                      default:
-	                          $sender->sendMessage("Usage: /opblock <add/remove> or <password>");
-	                          break;
-	                       }
-	                       
-	                       $password = $this->getConfig()->get('password');
-	                       if ($sender instanceof Player) {
-	                          if (isset($args[0]) {
-	                             if ($args[0] == $password) {
-	                                $this->plogged[$event->getPlayer()->getName] == true
-	                               $sender->sendMessage(TextFormat::GREEN."Password Accepted!");
-	                             } else {
-	                             $sender->sendMessage(TextFomat::RED."Wrong Password!");
-	                             }
-	                             } else {
-	                             $sender->sendMessage("Usage: /opblock <add/remove> or <password>");
-	                             }
-	                             else {
-	                             $sender->sendMessage("This command is only avaliable for ingame player");
-	                             }
-	                        }
-	                   }
-	                                   	                             	                       
-	public function onBlockBreak(BlockBreakEvent, $event)
-	$p = $event->getPlayer();
-	     if ($p->isOp()) {
-	          if(!$this->plogged[$event->getPlayer()->getName] == true){
-	              $p->sendMessage(TextFormat::RED."Please input Password for OP before you continute");
-	                    $event->setCancelled;
-	                    }
-	                    
-	                    public function onTap(PlayerInteractEvent, $event) {
-	                    $p = $event->getPlayer();
-	                    if ($p->isOp()) {
-	          if(!isset($this->plogged[$event->getPlayer()->getName] == true){
-	              $p->sendMessage(TextFormat::RED."Please input Password for OP before you continute");
-	                    $event->setCancelled;
-	                    }
-	                    
-	               private function addPlayerConfig($event) {
-	               $playerName = $event->getPlayer()->getName();
+}
+
+public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+
+if($command->getName() == opblock and $sender->hasPermission("opblock.command")){
+
+    switch(strtolower($args[0])) {
+    // add and remove player from bypass list
+         case "add":
+                if ($sender->hasPermission("opblock.command.add")) {
+
+                   if (isset($args[1])) {
+                        $this->addPlayerConfig($args[1]);
+                        $sender->sendMessage("Added ".$args[1] ."to Bypass list");
+                    } else {
+                       $sender->sendMessage("Usage: /opblock add <player>");
+                       }
+                       $sender->sendMessage(TextFormat::RED."You Don't have permission to use this command");
+                       }
+                       break;
+                       
+           case "remove":
+           case "rm":
+                   if($sender->hasPermission("opblock.command.rm"){
+                      if (isset($args[1]) {
+                           $this->removePlayerConfig($args[1]);
+                           $sender->sendMessage("Removed ".$args[1] ."out of Bypass list");
+                           }else{
+                           $sender->sendMessage("Usage: /opblock remove <name>");
+                        }
+                     }   else {
+                        $sender->sendMessage(TextFormat::RED."You don't have permission to use this command");
+                        }
+                      break;
+                    
+                      default:
+                          $sender->sendMessage("Usage: /opblock <add/remove> or <password>");
+                          break;
+                       }
+                       
+                       $password = $this->getConfig()->get('password');
+                       if ($sender instanceof Player) {
+                          if (isset($args[0]) {
+                             if ($args[0] == $password) {
+                                $this->plogged[$event->getPlayer()->getName] == true
+                               $sender->sendMessage(TextFormat::GREEN."Password Accepted!");
+                             } else {
+                             $sender->sendMessage(TextFomat::RED."Wrong Password!");
+                             }
+                             } else {
+                             $sender->sendMessage("Usage: /opblock <add/remove> or <password>");
+                             }
+                             else {
+                             $sender->sendMessage("This command is only avaliable for ingame player");
+                             }
+                        }
+                   }
+                                                                                       
+public function onBlockBreak(BlockBreakEvent, $event)
+$p = $event->getPlayer();
+     if ($p->isOp()) {
+          if(!$this->plogged[$event->getPlayer()->getName] == true){
+              $p->sendMessage(TextFormat::RED."Please input Password for OP before you continute");
+                    $event->setCancelled;
+                    }
+                    
+                    public function onTap(PlayerInteractEvent, $event) {
+                    $p = $event->getPlayer();
+                    if ($p->isOp()) {
+          if(!isset($this->plogged[$event->getPlayer()->getName] == true){
+              $p->sendMessage(TextFormat::RED."Please input Password for OP before you continute");
+                    $event->setCancelled;
+                    }
+                    
+               private function addPlayerConfig($event) {
+               $playerName = $event->getPlayer()->getName();
             
                   $list = $this->getConfig()->get('list');
                   $new_list = $list;
