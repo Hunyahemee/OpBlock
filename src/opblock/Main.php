@@ -130,6 +130,7 @@ $p = $event->getPlayer();
        $this->getConfig()->set('list', $new_list);
        $this->getConfig()->save();
        $this->getConfig()->reload();
+             }
          
          public function onJoin(PlayerJoinEvent, $event) {
          $player = $event->getPlayer-();
