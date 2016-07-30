@@ -86,21 +86,25 @@ if($command->getName() == opblock and $sender->hasPermission("opblock.command"))
                         }
                    }
                                                                                        
-public function onBlockBreak(BlockBreakEvent, $event)
+public function onBlockBreak(BlockBreakEvent $event) {
 $p = $event->getPlayer();
      if ($p->isOp()) {
           if(!$this->plogged[$event->getPlayer()->getName] == true){
               $p->sendMessage(TextFormat::RED."Please input Password for OP before you continute");
                     $event->setCancelled;
                     }
+           }
+}
                     
-                    public function onTap(PlayerInteractEvent, $event) {
+                    public function onTap(PlayerInteractEvent $event) {
                     $p = $event->getPlayer();
                     if ($p->isOp()) {
           if(!isset($this->plogged[$event->getPlayer()->getName] == true){
               $p->sendMessage(TextFormat::RED."Please input Password for OP before you continute");
                     $event->setCancelled;
                     }
+            }
+}
                     
                private function addPlayerConfig($event) {
                $playerName = $event->getPlayer()->getName();
@@ -138,4 +142,4 @@ $p = $event->getPlayer();
               }
             }
          }
-      }          
+      }           
