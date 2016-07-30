@@ -43,15 +43,16 @@ if($command->getName() == opblock and $sender->hasPermission("opblock.command"))
                         $sender->sendMessage("Added ".$args[1] ."to Bypass list");
                     } else {
                        $sender->sendMessage("Usage: /opblock add <player>");
-                       }
+         }
+                       } else {
                        $sender->sendMessage(TextFormat::RED."You Don't have permission to use this command");
                        }
                        break;
                        
            case "remove":
            case "rm":
-                   if($sender->hasPermission("opblock.command.rm"){
-                      if (isset($args[1]) {
+                   if($sender->hasPermission("opblock.command.rm")){
+                      if (isset($args[1])) {
                            $this->removePlayerConfig($args[1]);
                            $sender->sendMessage("Removed ".$args[1] ."out of Bypass list");
                            }else{
@@ -69,17 +70,17 @@ if($command->getName() == opblock and $sender->hasPermission("opblock.command"))
                        
                        $password = $this->getConfig()->get('password');
                        if ($sender instanceof Player) {
-                          if (isset($args[0]) {
+                          if (isset($args[0])) {
                              if ($args[0] == $password) {
-                                $this->plogged[$event->getPlayer()->getName] == true
+                                $this->plogged[$event->getPlayer()->getName] == true;
                                $sender->sendMessage(TextFormat::GREEN."Password Accepted!");
                              } else {
                              $sender->sendMessage(TextFomat::RED."Wrong Password!");
                              }
                              } else {
                              $sender->sendMessage("Usage: /opblock <add/remove> or <password>");
-                             }
-                             else {
+                     }
+                             } else {
                              $sender->sendMessage("This command is only avaliable for ingame player");
                              }
                         }
@@ -137,4 +138,4 @@ $p = $event->getPlayer();
               }
             }
          }
-      }           
+      }          
