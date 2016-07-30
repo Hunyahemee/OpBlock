@@ -99,7 +99,7 @@ $p = $event->getPlayer();
                     public function onTap(PlayerInteractEvent $event) {
                     $p = $event->getPlayer();
                     if ($p->isOp()) {
-          if(!isset($this->plogged[$event->getPlayer()->getName] == true){
+          if(!$this->plogged[$event->getPlayer()->getName] == true){
               $p->sendMessage(TextFormat::RED."Please input Password for OP before you continute");
                     $event->setCancelled;
                     }
@@ -130,9 +130,9 @@ $p = $event->getPlayer();
        $this->getConfig()->set('list', $new_list);
        $this->getConfig()->save();
        $this->getConfig()->reload();
-             }
+         }
          
-         public function onJoin(PlayerJoinEvent, $event) {
+         public function onJoin(PlayerJoinEvent $event) {
          $player = $event->getPlayer-();
          if ($player->isOp()){
         if ($this->list->exits($player->getName())) {
@@ -143,4 +143,4 @@ $p = $event->getPlayer();
               }
             }
          }
-      }           
+      }          
